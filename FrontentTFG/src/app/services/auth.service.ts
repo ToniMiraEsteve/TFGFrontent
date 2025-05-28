@@ -20,4 +20,15 @@ export class AuthService {
   attempAuth(email: string, password: string): Observable<any> {
     return this.http.post(this.baseUrl + '/login',{email: email,password: password},{observe: 'response'});
   }
+
+  logout(): Observable<any> {
+    const token = localStorage.getItem('access_token');
+  
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+  
+    return this.http.post(this.baseUrl + '/logout', {}, { headers, observe: 'response' });
+  }
 }

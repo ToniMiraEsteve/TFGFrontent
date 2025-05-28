@@ -1,0 +1,42 @@
+<mat-toolbar color="primary" class="sticky main-toolbar" *ngIf="!mobile"> 
+  <div>
+    <img id="image" type="image" alt="Logo" src="assets/logo.jpg" height="50px" class="logo">
+</div>
+
+  
+  <button mat-button routerLink="/info" [ngClass]="{ active: rutaActiva === 'info' }" class="enlace" aria-label="Info de la web" >
+    <mat-icon>info</mat-icon>
+    <span>Info</span>
+  </button>
+
+  <button mat-button routerLink="/ninyos" [ngClass]="{ active: rutaActiva === 'ninyos' }" class="enlace" aria-label="Vista de ninyos" *ngIf="rol === Roles.Admin || rol === Roles.Junta">
+    <mat-icon>person</mat-icon>
+    <span>Niño</span>
+  </button>
+  
+
+  <span class="spacer"></span>
+
+  <!-- Botón de login con solo icono -->
+  <button mat-icon-button class="enlace" routerLink="/login" *ngIf="!userLogged">
+    <mat-icon>login</mat-icon>
+  </button>
+
+  <button mat-icon-button class="enlace" aria-label="Salir de la aplicación" (click)="logout()"  *ngIf="userLogged">
+    <mat-icon>exit_to_app</mat-icon >
+  </button>
+
+  <!-- Botón circular de perfil -->
+  <button *ngIf="userLogged" class="enlace" (click)="openUserMenu()" mat-icon-button>
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  
+</mat-toolbar>
+
+
+<mat-toolbar color="primary" *ngIf="mobile" class="mobile-toolbar">
+  <button mat-icon-button (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>{{ rutaActiva | titlecase }}</span>
+</mat-toolbar>

@@ -1,0 +1,53 @@
+<div class="grow mat-elevation-z8">
+    <table mat-table  matSort  [dataSource]="dataSource">
+
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+        <td mat-cell *matCellDef="let row"> <b>{{row.nombre}}</b> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="curso">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Curso </th>
+        <td mat-cell *matCellDef="let row"> <b>{{row.curso}}</b> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="numero_contacto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Teléfono contacto </th>
+        <td mat-cell *matCellDef="let row"> {{row.numero_contacto}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="nombre_padres">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre del responsable </th>
+        <td mat-cell *matCellDef="let row"> {{row.nombre_padres }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="enfermedades_alergias">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Enfermedades y alergias </th>
+        <td mat-cell *matCellDef="let row"> {{row.enfermedades_alergias != null ? row.enfermedades_alergias : 'No tiene'}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="correo_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo contacto </th>
+        <td mat-cell *matCellDef="let row"> {{row.correo_id}} </td>
+      </ng-container>
+
+      <!--<ng-container matColumnDef="opciones">
+        <th mat-header-cell *matHeaderCellDef> Opciones </th>
+        <td mat-cell *matCellDef="let row"> 
+          <button mat-icon-button aria-label="Editar" (click) = "edit(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="Borrar" (click) = "delete(row)">
+            <mat-icon>delete</mat-icon>
+          </button>  
+        </td>
+      </ng-container>   -->
+
+     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
+     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="ViewNinyo(row)"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No hay coincidencias</td>
+      </tr>
+    </table>
+  </div>

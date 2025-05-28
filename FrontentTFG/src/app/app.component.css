@@ -1,0 +1,14 @@
+.menu {
+    padding: 20px;
+}
+
+.mat-drawer-inner-container {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}
+
+.spacer {
+    margin: 1em 0;
+    border-bottom: 1px solid #ccc;
+}

@@ -1,0 +1,15 @@
+<ng-container *ngIf="user">
+    <h2 mat-dialog-title>Detalles del Usuario</h2>
+    <mat-dialog-content>
+      <div class="persona-info">
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Nombre:</strong> {{ user.nombre }}</p>
+        <p><strong>Apellido:</strong> {{ user.apellido }}</p>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button color="primary" (click)="cerrar()">Cerrar</button>
+    </mat-dialog-actions>
+  </ng-container>
+  
