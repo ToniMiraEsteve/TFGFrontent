@@ -3,6 +3,8 @@ import { NinyosService } from 'src/app/services/ninyos.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { Ninyo } from '../../models/ninyo';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab-view-ninyo',
@@ -13,15 +15,16 @@ export class TabViewNinyoComponent implements OnInit {
 
   dataSource: MatTableDataSource<Ninyo> = new MatTableDataSource();
 
-  constructor(private ninyoService: NinyosService, private route: ActivatedRoute) { }
+  constructor(private ninyoService: NinyosService, private route: ActivatedRoute,  private location: Location, private router: Router) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const id = params.get('id');
-      console.log('ID from route:', id);
-      if (id) {
-        this.loadNinyo(+id);
-      }
+    this.route.firstChild?.params.subscribe(params => {
+      this.ninyoService.getNinyoById(params.id).subscribe(
+        (data) => {
+          console.log(data);
+          this.dataSource.data = [data.data];
+        }
+      );
     });
   }
   
@@ -34,6 +37,10 @@ export class TabViewNinyoComponent implements OnInit {
 
       }
     );
+  }
+
+  volverAtras() {
+    this.router.navigate(['/ninyos']);
   }
 
 }

@@ -14,6 +14,15 @@
     <span>Niño</span>
   </button>
   
+  <button mat-button routerLink="/pdfs" [ngClass]="{ active: rutaActiva === 'pdfs' }" class="enlace" aria-label="Vista de formulario" *ngIf="rol === Roles.Admin || rol === Roles.Junta">
+    <mat-icon>info</mat-icon>
+    <span>Formularios</span>
+  </button>
+
+  <button mat-button routerLink="/eventos" [ngClass]="{ active: rutaActiva === 'eventos' }" class="enlace" aria-label="Vista de eventos" *ngIf="rol === Roles.Admin || rol === Roles.Junta">
+    <mat-icon>info</mat-icon>
+    <span>eventos</span>
+  </button>
 
   <span class="spacer"></span>
 

@@ -5,14 +5,10 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
-
-export class NinyosService {
+export class PdfsService {
 
   private baseUrl = environment.apiUrl;
   private url = this.baseUrl;
@@ -30,26 +26,8 @@ export class NinyosService {
     return { headers };
   }
 
-  public getNinyos(): Observable<any> {
-    return this.http.get(this.url + '/ninyo', this.getHttpOptions());
+  crearPdf(pdf: any): Observable<any> {
+    return this.http.post(this.url + '/pdf', pdf, this.getHttpOptions());
   }
-
-  public getNinyoById(id: Number): Observable<any> {
-    return this.http.get(this.url + '/ninyo/' + id, this.getHttpOptions());
-  }
-
-  public editNinyo(ninyo: any ): Observable<any> {
-    return this.http.put(this.url + '/ninyo/' + ninyo.id, ninyo, this.getHttpOptions());
-  }
-
-  public deleteNinyo(id: Number): Observable<any> {  
-    return this.http.delete(this.url + '/ninyo/' + id, this.getHttpOptions());
-  }
-
-  public createNinyo(ninyo: any): Observable<any> {
-    return this.http.post(this.url + '/ninyo', ninyo, this.getHttpOptions());
-  }
-
-
 
 }

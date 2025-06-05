@@ -1,24 +1,81 @@
+/* Contenedor principal centrado */
+.pagina-ninyo {
+  display: flex;
+  flex-direction: column; /* Para que el card y el botón estén uno debajo de otro */
+  align-items: center;    /* Centra horizontalmente todo el contenido */
+  padding-top: 40px;
+}
+
+/* Card centrado con márgenes automáticos (opcional si usas .pagina-ninyo flex) */
 mat-card {
-    max-width: 600px;
-    margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  /* Quita margin-top porque lo tienes en .pagina-ninyo */
+  /* margin-top: 40px; */
+}
+
+/* Botón "Volver atrás" centrado */
+.contenedor-boton-volver {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Estilos existentes */
+
+mat-card-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+mat-card-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+mat-card-content p {
+  margin: 12px 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+button[mat-raised-button] {
+  margin-top: 6px;
+  font-size: 1rem;
+  padding: 6px 16px;
+}
+
+.text-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #666;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 480px) {
+  mat-card {
+    margin: 20px 10px;
     padding: 16px;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    background-color: #fff;
   }
-  
+
   mat-card-title {
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 1.4rem;
   }
-  
+
   mat-card-subtitle {
-    font-size: 18px;
-    color: #666;
+    font-size: 1rem;
   }
-  
+
   mat-card-content p {
-    margin: 10px 0;
-    font-size: 16px;
+    font-size: 1rem;
   }
-  
+
+  button[mat-raised-button] {
+    width: 100%;
+  }
+}

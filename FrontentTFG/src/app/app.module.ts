@@ -11,6 +11,11 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +26,13 @@ import { ToolbarComponent } from './general/toolbar/toolbar.component';
 import { UserDialogComponent } from './general/dialogs/user-dialog/user-dialog.component';
 import { NinyosComponent } from './ninyos/ninyos.component';
 import { TabViewNinyoComponent } from './ninyos/tab-view-ninyo/tab-view-ninyo.component';
+import { TabEditNinyoComponent } from './ninyos/tab-edit-ninyo/tab-edit-ninyo.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ErrorValDialogComponent } from './general/dialogs/error-val-dialog/error-val-dialog.component';
+import { PdfsComponent } from './pdfs/pdfs.component';
+import { SafeUrlPipe } from './general/pipe/safe-url.pipe';
+import { CalendarioComponent } from './calendario/calendario.component';
+import { EventDialogComponent } from './general/dialogs/event-dialog/event-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +42,13 @@ import { TabViewNinyoComponent } from './ninyos/tab-view-ninyo/tab-view-ninyo.co
     ToolbarComponent,
     UserDialogComponent,
     NinyosComponent,
-    TabViewNinyoComponent
+    TabViewNinyoComponent,
+    TabEditNinyoComponent,
+    ErrorValDialogComponent,
+    PdfsComponent,
+    SafeUrlPipe,
+    CalendarioComponent,
+    EventDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +64,15 @@ import { TabViewNinyoComponent } from './ninyos/tab-view-ninyo/tab-view-ninyo.co
     MatSortModule,
     MatCardModule,
     MatChipsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

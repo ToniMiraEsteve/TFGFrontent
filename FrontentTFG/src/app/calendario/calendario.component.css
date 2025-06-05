@@ -1,0 +1,22 @@
+.calendar-container {
+    margin: 1rem;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Asegura que el calendario ocupe todo el ancho disponible */
+  mwl-calendar-month-view {
+    display: block;
+    max-width: 100%;
+  }
+  
+  /* Botón flotante para añadir evento */
+  .add-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10;
+  }
+  

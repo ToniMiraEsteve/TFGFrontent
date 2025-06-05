@@ -1,0 +1,125 @@
+<form [formGroup]="pdfForm" (ngSubmit)="onSubmit()" class="formulario-container">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre y Apellidos</mat-label>
+    <input matInput formControlName="nombre_apellidos" placeholder="Introduce el nombre completo" />
+    <mat-error *ngIf="pdfForm.get('nombre_apellidos')?.invalid && pdfForm.get('nombre_apellidos')?.touched">
+      El nombre y apellidos son obligatorios.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Edad</mat-label>
+    <input matInput type="number" formControlName="edad" placeholder="Introduce la edad" />
+    <mat-error *ngIf="pdfForm.get('edad')?.invalid && pdfForm.get('edad')?.touched">
+      La edad es obligatoria.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha de nacimiento</mat-label>
+    <input matInput type="date" formControlName="fecha_nacimiento" />
+    <mat-error *ngIf="pdfForm.get('fecha_nacimiento')?.invalid && pdfForm.get('fecha_nacimiento')?.touched">
+      La fecha de nacimiento es obligatoria.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Grupo</mat-label>
+    <input matInput formControlName="grupo" placeholder="Introduce el grupo" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre del Tutor</mat-label>
+    <input matInput formControlName="nombre_tutor" placeholder="Nombre del tutor" />
+    <mat-error *ngIf="pdfForm.get('nombre_tutor')?.invalid && pdfForm.get('nombre_tutor')?.touched">
+      El nombre del tutor es obligatorio.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Teléfono del Tutor</mat-label>
+    <input matInput formControlName="telefono_tutor" placeholder="Teléfono del tutor" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Expectativas</mat-label>
+    <textarea matInput formControlName="expectativas" placeholder="Expectativas"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Observaciones Médicas</mat-label>
+    <textarea matInput formControlName="observaciones_medicas" placeholder="Observaciones médicas"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Tratamiento</mat-label>
+    <textarea matInput formControlName="tratamiento" placeholder="Tratamiento"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Seguro Médico</mat-label>
+    <input matInput formControlName="seguro" placeholder="Seguro médico" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Número de Seguro</mat-label>
+    <input matInput formControlName="numero_seguro" placeholder="Número de seguro" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre Autorización Urgencias</mat-label>
+    <input matInput formControlName="autorizacion_urgencias_nombre" placeholder="Nombre autorizado urgencias" />
+    <mat-error *ngIf="pdfForm.get('autorizacion_urgencias_nombre')?.invalid && pdfForm.get('autorizacion_urgencias_nombre')?.touched">
+      Este campo es obligatorio.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>DNI Autorización Urgencias</mat-label>
+    <input matInput formControlName="autorizacion_urgencias_dni" placeholder="DNI autorizado urgencias" />
+    <mat-error *ngIf="pdfForm.get('autorizacion_urgencias_dni')?.invalid && pdfForm.get('autorizacion_urgencias_dni')?.touched">
+      Este campo es obligatorio.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha Autorización Urgencias</mat-label>
+    <input matInput type="date" formControlName="autorizacion_urgencias_fecha" />
+    <mat-error *ngIf="pdfForm.get('autorizacion_urgencias_fecha')?.invalid && pdfForm.get('autorizacion_urgencias_fecha')?.touched">
+      Este campo es obligatorio.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nombre Autorización Imagen</mat-label>
+    <input matInput formControlName="autorizacion_imagen_nombre" placeholder="Nombre autorizado imagen" />
+    <mat-error *ngIf="pdfForm.get('autorizacion_imagen_nombre')?.invalid && pdfForm.get('autorizacion_imagen_nombre')?.touched">
+      Este campo es obligatorio.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>DNI Autorización Imagen</mat-label>
+    <input matInput formControlName="autorizacion_imagen_dni" placeholder="DNI autorizado imagen" />
+    <mat-error *ngIf="pdfForm.get('autorizacion_imagen_dni')?.invalid && pdfForm.get('autorizacion_imagen_dni')?.touched">
+      Este campo es obligatorio.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Fecha Autorización Imagen</mat-label>
+    <input matInput type="date" formControlName="autorizacion_imagen_fecha" />
+    <mat-error *ngIf="pdfForm.get('autorizacion_imagen_fecha')?.invalid && pdfForm.get('autorizacion_imagen_fecha')?.touched">
+      Este campo es obligatorio.
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="pdfForm.invalid">Enviar</button>
+</form>
+
+
+<ng-container *ngIf="pdfUrl">
+  <h3>Previsualización del PDF</h3>
+  <iframe [src]="pdfUrl | safeUrl" width="100%" height="600px" style="margin-top: 20px; border: 1px solid #ccc;"></iframe>
+</ng-container>

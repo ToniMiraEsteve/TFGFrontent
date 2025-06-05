@@ -1,0 +1,63 @@
+<form [formGroup]="ninyoForm" class="d-flex">
+  <div class="mat-elevation-z3 form-section-elevation">
+    <h3>Información del Niño</h3>
+
+    <div class="input-grid">
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" />
+        <mat-error *ngIf="ninyoForm.get('nombre')?.invalid && (ninyoForm.get('nombre')?.dirty || ninyoForm.get('nombre')?.touched)">
+          El nombre es obligatorio.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Curso</mat-label>
+        <mat-select formControlName="curso">
+          <mat-option *ngFor="let curso of cursos" [value]="curso.value">
+            {{ curso.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      
+    </div>
+
+    <div class="input-grid">
+      <mat-form-field appearance="fill">
+        <mat-label>Número de contacto</mat-label>
+        <input matInput formControlName="numero_contacto" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre de los padres</mat-label>
+        <input matInput formControlName="nombre_padres" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="mat-elevation-z3 form-section-elevation">
+    <h3>Información adicional</h3>
+
+    <div class="input-grid">
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="correo_id" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="text-area">
+        <mat-label>Enfermedades o alergias</mat-label>
+        <textarea matInput formControlName="enfermedades_alergias" rows="3"></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="footer">
+    <button type="button" mat-raised-button color="primary" (click)="guardar()" [disabled]="ninyoForm.invalid">
+      Guardar
+    </button>
+    <button type="button" mat-raised-button color="warn" (click)="cancelar()">
+      Cancelar
+    </button>
+  </div>
+</form>
