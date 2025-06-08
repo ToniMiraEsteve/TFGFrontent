@@ -1,1 +1,50 @@
-<p>event-dialog works!</p>
+<h2 mat-dialog-title>{{ esEdicion ? 'Editar evento' : 'Crear evento' }}</h2>
+<mat-dialog-content [formGroup]="eventoForm" class="form-content">
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Título</mat-label>
+    <input matInput formControlName="titulo" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Mensaje</mat-label>
+    <textarea matInput formControlName="mensaje"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Fecha</mat-label>
+    <input matInput [matDatepicker]="picker"  formControlName="fecha" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Hora de inicio</mat-label>
+    <input matInput type="time" formControlName="hora_inicio" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Hora de fin</mat-label>
+    <input matInput type="time" formControlName="hora_fin" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Rol destinatario</mat-label>
+    <mat-select formControlName="rol_destinatario">
+      <mat-option value="todos">Todos</mat-option>
+      <mat-option value="admin">Admin</mat-option>
+      <mat-option value="junta">Junta</mat-option>
+      <mat-option value="monitor">Monitor</mat-option>
+      <mat-option value="usuario">Usuario</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-100">
+    <mat-label>Color</mat-label>
+    <input matInput type="color" formControlName="color" />
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-flat-button color="primary" (click)="guardar()">Guardar</button>
+</mat-dialog-actions>
