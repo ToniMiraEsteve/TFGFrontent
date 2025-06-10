@@ -36,6 +36,7 @@ import { PdfsComponent } from './pdfs/pdfs.component';
 import { SafeUrlPipe } from './general/pipe/safe-url.pipe';
 import { CalendarioComponent } from './calendario/calendario.component';
 import { EventDialogComponent } from './general/dialogs/event-dialog/event-dialog.component';
+import { PostsComponent } from './posts/posts.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { EventDialogComponent } from './general/dialogs/event-dialog/event-dialo
     SafeUrlPipe,
     CalendarioComponent,
     EventDialogComponent,
+    PostsComponent,
   ],
   imports: [
     BrowserModule,

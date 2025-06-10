@@ -1,0 +1,60 @@
+<div class="post-container">
+
+    <h2>Posts</h2>
+  
+    <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
+  
+    <form (ngSubmit)="crearPost()" class="form-nuevo-post">
+      <textarea [(ngModel)]="nuevoPost.contenido" name="contenido" placeholder="Escribe un nuevo post..." rows="3"></textarea>
+      <button type="submit">Crear Post</button>
+    </form>
+  
+    <div *ngIf="cargando" class="loading">Cargando posts...</div>
+  
+    <div *ngFor="let post of posts" class="post-item">
+  
+      <div [ngClass]="{'mio': post.usuario?.id === currentUser?.id, 'otro': post.usuario?.id !== currentUser?.id}">
+        
+        <p class="contenido">{{ post.contenido }}</p>
+        <small>
+          Publicado por: <strong>{{ post.usuario?.nombre || 'Anónimo' }}</strong> |
+          Fecha: {{ post.fecha | date:'short' }}
+        </small>
+  
+        <div class="acciones" *ngIf="post.usuario?.id === currentUser?.id">
+          <button (click)="editar(post)">Editar</button>
+          <button (click)="borrarPost(post.id)">Borrar</button>
+        </div>
+  
+        <button (click)="post.mostrarRespuestas = !post.mostrarRespuestas">
+          {{ post.mostrarRespuestas ? 'Ocultar respuestas' : 'Ver respuestas' }} ({{ post.respuestas?.length || 0 }})
+        </button>
+  
+        <div class="respuestas" *ngIf="post.mostrarRespuestas">
+          <h4>Respuestas:</h4>
+          <ul *ngIf="post.respuestas?.length; else noRespuestas">
+            <li *ngFor="let r of post.respuestas">
+              <strong>{{ r.usuario?.nombre || 'Anónimo' }}:</strong> {{ r.contenido }}
+            </li>
+          </ul>
+          <ng-template #noRespuestas>
+            <p>No hay respuestas aún.</p>
+          </ng-template>
+  
+          <div class="form-respuesta">
+            <textarea [(ngModel)]="nuevasRespuestas[post.id]" name="respuesta_{{post.id}}" placeholder="Responder..." rows="2"></textarea>
+            <button (click)="enviarRespuesta(post)">Enviar respuesta</button>
+          </div>
+        </div>
+  
+      </div>
+  
+      <div *ngIf="editandoPost?.id === post.id" class="edit-form">
+        <textarea [(ngModel)]="editandoPost.contenido" rows="3"></textarea>
+        <button (click)="guardarEdicion()">Guardar</button>
+        <button (click)="cancelarEdicion()">Cancelar</button>
+      </div>
+  
+    </div>
+  </div>
+  

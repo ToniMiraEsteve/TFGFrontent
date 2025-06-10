@@ -24,6 +24,11 @@
     <span>eventos</span>
   </button>
 
+  <button mat-button routerLink="/foro" [ngClass]="{ active: rutaActiva === 'foro' }" class="enlace" aria-label="Vista de foro" *ngIf="rol === Roles.Admin || rol === Roles.Junta">
+    <mat-icon>info</mat-icon>
+    <span>foro</span>
+  </button>
+
   <span class="spacer"></span>
 
   <!-- Botón de login con solo icono -->

@@ -9,6 +9,7 @@ import { Rol } from './enums/rol.enum';
 import { RoleGuard } from './general/guards/role.guard';
 import { PdfsComponent } from './pdfs/pdfs.component';
 import { CalendarioComponent } from './calendario/calendario.component';
+import { PostsComponent } from './posts/posts.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,9 @@ const routes: Routes = [
   ]},
 
   {path: 'pdfs', component: PdfsComponent,data: { roles: [Rol.Admin] } , canActivate: [RoleGuard]},
-  {path: 'eventos', component: CalendarioComponent,data: { roles: [Rol.Admin] } , canActivate: [RoleGuard]}
+  {path: 'eventos', component: CalendarioComponent,data: { roles: [Rol.Admin] } , canActivate: [RoleGuard]},
+  {path: 'foro', component: PostsComponent,data: { roles: [Rol.Admin] } , canActivate: [RoleGuard]}
+
 ];
 
 @NgModule({
