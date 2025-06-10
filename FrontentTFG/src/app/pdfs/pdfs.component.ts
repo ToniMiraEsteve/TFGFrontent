@@ -16,16 +16,18 @@ export class PdfsComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private pdfService: PdfsService) {}
 
-
   
   ngOnInit(): void {
+    if (this.pdfForm.valid) {
+      this.pdfUrl = 'generado';
+    }
   }
 
   onSubmit(): void {
     const datosFormulario = this.pdfForm.value;
 
     const payload = {
-      user_id: 1, // Sustituye por el ID real del usuario si hace falta
+      user_id: 1, 
       datos_form: datosFormulario,
       estado: 'pendiente',
       desactivado: false
@@ -49,5 +51,10 @@ export class PdfsComponent implements OnInit {
 
     
     
+  }
+
+  volverAlFormulario() {
+    this.pdfUrl = null;
+    this.pdfForm.reset();
   }
 }

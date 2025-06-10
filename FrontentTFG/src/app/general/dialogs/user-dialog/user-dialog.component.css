@@ -1,8 +1,64 @@
 .persona-info {
-    padding: 10px;
-    font-size: 16px;
+  padding: 20px 15px;
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  color: #34495e;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+.persona-info p {
+  margin: 12px 0;
+  font-weight: 500;
+  border-bottom: 1px solid #e0e6ed;
+  padding-bottom: 6px;
+}
+
+.persona-info p strong {
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+mat-dialog-content {
+  background-color: #fafafa;
+  border-radius: 8px;
+  padding: 12px 0;
+}
+
+mat-dialog-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #2c3e50;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+
+mat-dialog-actions {
+  padding: 16px 24px;
+}
+
+button[mat-button] {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #34495e;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button[mat-button]:hover {
+  background-color: #34495e;
+  color: #fff;
+  border-radius: 6px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .persona-info {
+    padding: 16px 12px;
+    font-size: 0.95rem;
   }
-  .persona-info p {
-    margin: 5px 0;
+
+  mat-dialog-title {
+    font-size: 1.4rem;
   }
-  
+}

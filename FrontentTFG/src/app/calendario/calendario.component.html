@@ -1,23 +1,27 @@
+<!-- Calendario Header -->
 <div class="calendar-header">
   <button (click)="previousMonth()">&#8592;</button>
   <span>{{ viewDate | date:'MMMM yyyy' : undefined : 'es' }}</span>
   <button (click)="nextMonth()">&#8594;</button>
 </div>
 
+<!-- Contenedor Principal -->
 <div class="calendar-container" [class.with-sidebar]="eventoSeleccionado" [class.full-width]="!eventoSeleccionado">
+  
+  <!-- Calendario -->
   <div class="calendar">
-
     <mwl-calendar-month-view
-    [viewDate]="viewDate"
-    [locale]="locale"
-    [events]="events"
-    [activeDayIsOpen]="activeDayIsOpen"
-    (dayClicked)="onDayClick($event)"
-    [weekStartsOn]="1"
-    (eventClicked)="mostrarEvento($event.event)">
-  </mwl-calendar-month-view>
+      [viewDate]="viewDate"
+      [locale]="locale"
+      [events]="events"
+      [activeDayIsOpen]="activeDayIsOpen"
+      [weekStartsOn]="1"
+      (dayClicked)="onDayClick($event)"
+      (eventClicked)="mostrarEvento($event.event)">
+    </mwl-calendar-month-view>
   </div>
 
+  <!-- Sidebar Evento -->
   <div class="sidebar" [class.hidden]="!eventoSeleccionado">
     <h3>{{ eventoSeleccionado?.titulo }}</h3>
     <p>{{ eventoSeleccionado?.mensaje }}</p>
@@ -26,23 +30,18 @@
     <p><strong>Hora fin:</strong> {{ eventoSeleccionado?.hora_fin }}</p>
     <button mat-button (click)="cerrarSidebar()">Cerrar</button>
     <button mat-button (click)="borrar()" *ngIf="userRol == Roles.Junta || userRol == Roles.Admin">Borrar</button>
+  </div>
+
+  <!-- Plantilla personalizada del evento -->
+  <ng-template #customEventTemplate let-event="event">
+    <div class="custom-event" [style.backgroundColor]="event.color?.primary">
+      <span class="event-title">{{ event.title }}</span>
+      <span class="event-time">{{ event.start | date:'HH:mm' }}</span>
+    </div>
+  </ng-template>
 </div>
 
-
-
-<button
-  mat-fab
-  color="primary"
-  class="add-btn"
-  *ngIf="userRol !== Roles.Usuario"
-  (click)="openEventDialog()"
-  aria-label="Crear evento">
-  <mat-icon>add</mat-icon>
-</button>
-
-
-</div>
-
+<!-- Botón flotante -->
 <button
   mat-fab
   color="primary"

@@ -1,71 +1,210 @@
+:root {
+  --color-azul: #2563eb;
+  --color-azul-oscuro: #1e40af;
+  --color-naranja: #f97316;
+  --color-naranja-oscuro: #ea580c;
+  --color-blanco: #ffffff;
+  --color-gris: #f3f4f6;
+  --color-gris-claro: #e5e7eb;
+  --color-gris-medio: #9ca3af;
+  --color-texto: #111827;
+}
+
+/* Contenedor general */
 .post-container {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 1rem;
-    font-family: Arial, sans-serif;
-  }
-  
-  .error {
-    color: red;
-    margin-bottom: 1rem;
-  }
-  
-  .loading {
-    font-style: italic;
-    margin: 1rem 0;
-  }
-  
-  .form-nuevo-post textarea {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    resize: vertical;
-  }
-  
-  .form-nuevo-post button {
-    margin-top: 0.5rem;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-  }
-  
-  .post-item {
-    border: 1px solid #ccc;
-    padding: 0.75rem;
-    margin: 1rem 0;
-    border-radius: 4px;
-    background: #fafafa;
-  }
-  
-  .contenido {
-    white-space: pre-line;
-  }
-  
-  .acciones {
-    margin-top: 0.5rem;
-  }
-  
-  .acciones button {
-    margin-right: 0.5rem;
-    cursor: pointer;
-  }
-  
-  .respuestas {
-    margin-top: 1rem;
-    padding-left: 1rem;
-    border-left: 2px solid #ccc;
-  }
-  
-  .edit-form textarea {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    resize: vertical;
-    margin-bottom: 0.5rem;
-  }
-  
-  .edit-form button {
-    margin-right: 0.5rem;
-    padding: 0.3rem 0.7rem;
-    cursor: pointer;
-  }
-  
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem 1.5rem;
+  background-color: var(--color-blanco);
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Título */
+.post-container h2 {
+  font-size: 1.8rem;
+  color: var(--color-azul);
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--color-gris-claro);
+  padding-bottom: 0.5rem;
+}
+
+/* Formularios */
+.form-nuevo-post textarea,
+.form-respuesta textarea {
+  width: 100%;
+  border: 1.5px solid var(--color-gris-claro);
+  border-radius: 10px;
+  padding: 0.7rem;
+  font-size: 1rem;
+  resize: vertical;
+  margin-bottom: 0.5rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+textarea:focus {
+  border-color: var(--color-azul);
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.3);
+  outline: none;
+}
+
+/* Botones generales */
+button {
+  background-color: var(--color-azul);
+  color: var(--color-blanco);
+  border: 2px solid var(--color-azul-oscuro);
+  border-radius: 8px;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
+}
+
+button:hover {
+  background-color: var(--color-azul-oscuro);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.6);
+}
+
+/* Botón ver respuestas */
+.btn-ver-respuestas {
+  background-color: var(--color-naranja);
+  border: 2px solid var(--color-naranja-oscuro);
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 6px rgba(234, 88, 12, 0.3);
+}
+
+.btn-ver-respuestas:hover {
+  background-color: var(--color-naranja-oscuro);
+  box-shadow: 0 4px 12px rgba(234, 88, 12, 0.5);
+}
+
+/* Post item */
+.post-item {
+  padding: 1rem;
+  border-radius: 12px;
+  border: 2px solid var(--color-gris-claro);
+  background-color: var(--color-gris);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  word-wrap: break-word;
+  max-width: 65%;
+  margin: 1rem 0;
+  position: relative;
+  clear: both;
+  box-sizing: border-box;
+}
+
+/* Posts míos */
+.post-mio {
+  background-color: #e0f2fe;
+  border-color: var(--color-azul);
+  float: right;
+  margin-left: 1rem;
+}
+
+.post-mio .contenido {
+  text-align: left;
+}
+
+/* Posts de otros */
+.post-otro {
+  background-color: #fff7ed;
+  border-color: var(--color-naranja);
+  float: left;
+  margin-right: 1rem;
+  text-align: left;
+}
+
+/* Contenido del post - texto SIEMPRE alineado a la izquierda */
+.post-item .contenido {
+  margin: 0.7rem 0;
+  font-size: 1rem;
+  color: var(--color-texto);
+  text-align: left !important;
+}
+
+/* Acciones */
+.acciones, .acciones-respuesta {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+/* Contenedor de respuestas */
+.respuestas {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f9fafb;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+}
+
+/* Lista de respuestas */
+.respuestas ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.respuestas li {
+  margin-bottom: 0.8rem;
+  padding: 0.5rem 0.8rem;
+  background-color: var(--color-gris);
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+/* Cargando y errores */
+.loading {
+  text-align: center;
+  color: var(--color-azul);
+  margin: 1rem 0;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* === MODO EDICIÓN DENTRO DEL POST === */
+.post-item textarea {
+  width: 100%;
+  border: 2px dashed var(--color-azul);
+  border-radius: 10px;
+  padding: 0.6rem;
+  font-size: 0.95rem;
+  background-color: #eff6ff;
+  margin-top: 0.6rem;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+/* Botones dentro del post al editar */
+.post-item .acciones-edicion {
+  margin-top: 0.6rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+/* Botón guardar */
+.post-item .acciones-edicion button:first-child {
+  background-color: var(--color-azul);
+  border: 2px solid var(--color-azul-oscuro);
+}
+
+/* Botón cancelar */
+.post-item .acciones-edicion button:last-child {
+  background-color: var(--color-gris-medio);
+  border: 2px solid #6b7280;
+  color: var(--color-blanco);
+}
+
+.post-item .acciones-edicion button:last-child:hover {
+  background-color: #6b7280;
+}

@@ -28,12 +28,12 @@ export class RespuestasService {
     return this.http.post(this.url + '/respuesta', respuesta, this.getHttpOptions());
   }
 
-  public deleteRespuesta(id: number): Observable<any> {
-    return this.http.delete(this.url+ '/respuesta/'+id, this.getHttpOptions());
+  public borrarRespuesta(id: Number): Observable<any> {  
+    return this.http.delete(this.url + '/respuestas/' + id, this.getHttpOptions());
   }
 
   public updateRespuesta(respuesta: Respuesta): Observable<any> {
-    return this.http.put(this.url + '/respuesta/'+ respuesta.id, respuesta, this.getHttpOptions());
+    return this.http.put(this.url + '/respuestas/'+ respuesta.id, respuesta, this.getHttpOptions());
   }
   
   public getRespuestasByPostId(postId: number): Observable<any> {

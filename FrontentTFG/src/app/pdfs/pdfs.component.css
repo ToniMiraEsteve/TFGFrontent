@@ -1,42 +1,164 @@
+/* Centrar todo vertical y horizontalmente */
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f2f5;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Formulario */
 .formulario-container {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    background-color: #fafafa;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
+  max-width: 700px;
+  width: 100%;
+  padding: 2.5rem 3rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+}
+
+/* Títulos de sección */
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1976d2;
+  margin-top: 2rem;
+  border-bottom: 2px solid #1976d2;
+  padding-bottom: 0.3rem;
+}
+
+/* Mat-form-field con ancho controlado para inputs */
+mat-form-field {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Inputs y textareas */
+input.mat-input-element, textarea.mat-input-element {
+  background-color: #f8f9fa;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #444;
+  box-sizing: border-box;
+}
+
+/* Limitar altura de textarea */
+textarea.mat-input-element {
+  max-height: 120px;
+  resize: vertical;
+}
+
+/* Errores */
+mat-error {
+  color: #d32f2f;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* Botón enviar */
+button[type="submit"] {
+  align-self: flex-end;
+  padding: 0.85rem 3rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  background-color: #1976d2;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+  box-shadow: 0 6px 16px rgba(25, 118, 210, 0.35);
+}
+
+button[type="submit"]:hover:not(:disabled) {
+  background-color: #155a9c;
+  transform: scale(1.05);
+}
+
+button[type="submit"]:disabled {
+  background-color: #90caf9;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Contenedor para la previsualización del PDF */
+.pdf-preview-container {
+  width: 600px;  
+  height: 842px; 
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(25, 118, 210, 0.3);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #1976d2;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Título de la previsualización */
+.pdf-preview-container h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #1976d2;
+  font-weight: 700;
+  border-bottom: 2px solid #1976d2;
+  padding-bottom: 0.4rem;
+}
+
+/* Iframe para PDF */
+.pdf-preview {
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  overflow: auto;
+}
+
+/* Botón volver */
+.btn-volver {
+  margin-top: 1rem;
+  align-self: center;
+  padding: 0.6rem 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  background-color: #1976d2;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(25, 118, 210, 0.4);
+  transition: background-color 0.3s ease;
+}
+
+.btn-volver:hover {
+  background-color: #155a9c;
+}
+
+/* Responsive para móvil */
+@media (max-width: 500px) {
+  .formulario-container, .pdf-preview-container {
+    width: 90vw;
+    height: auto;
   }
-  
+
+  .pdf-preview-container {
+    height: 500px;
+  }
+
   mat-form-field {
-    width: 100%;
+    max-width: 100%;
   }
-  
-  button[type="submit"] {
-    align-self: flex-end;
-    padding: 0.6rem 2rem;
-    font-weight: 600;
-    font-size: 1.1rem;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16);
-    transition: background-color 0.3s ease;
-  }
-  
-  button[type="submit"]:hover:not(:disabled) {
-    background-color: #1565c0; /* color un poco más oscuro de primary */
-  }
-  
-  button[type="submit"]:disabled {
-    background-color: #90caf9;
-    cursor: not-allowed;
-  }
-  
-  /* Responsive: en pantallas pequeñas, margen más reducido */
-  @media (max-width: 480px) {
-    .formulario-container {
-      margin: 1rem;
-      padding: 1rem;
-    }
-  }
-  
+}

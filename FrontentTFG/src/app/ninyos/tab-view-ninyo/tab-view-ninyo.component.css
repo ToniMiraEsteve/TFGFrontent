@@ -1,81 +1,131 @@
-/* Contenedor principal centrado */
+/* Contenedor principal */
 .pagina-ninyo {
   display: flex;
-  flex-direction: column; /* Para que el card y el botón estén uno debajo de otro */
-  align-items: center;    /* Centra horizontalmente todo el contenido */
-  padding-top: 40px;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #2c3e50;
+  box-sizing: border-box;
 }
 
-/* Card centrado con márgenes automáticos (opcional si usas .pagina-ninyo flex) */
+/* Tarjeta */
 mat-card {
-  width: 90%;
-  max-width: 600px;
-  padding: 20px;
+  width: 100%;
+  max-width: 620px;
+  padding: 36px 40px;
   background-color: #ffffff;
-  border-radius: 12px;
-  /* Quita margin-top porque lo tienes en .pagina-ninyo */
-  /* margin-top: 40px; */
+  border-radius: 14px;
+  border: 1px solid #d1d8e0;
+  box-shadow: 0 10px 30px rgba(44, 62, 80, 0.07);
+  transition: box-shadow 0.3s ease;
 }
 
-/* Botón "Volver atrás" centrado */
+mat-card:hover {
+  box-shadow: 0 15px 45px rgba(44, 62, 80, 0.12);
+}
+
+/* Título principal */
+mat-card-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #34495e;
+  margin-bottom: 8px;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+  font-family: 'Playfair Display', serif;
+}
+
+/* Subtítulo */
+mat-card-subtitle {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #7f8c8d;
+  margin-bottom: 26px;
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+/* Texto del contenido */
+mat-card-content p {
+  margin: 16px 0;
+  font-size: 1.1rem;
+  color: #34495e;
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+mat-card-content p strong {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* Botón volver */
 .contenedor-boton-volver {
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 36px;
 }
 
-/* Estilos existentes */
-
-mat-card-title {
-  font-size: 1.8rem;
-  font-weight: bold;
-}
-
-mat-card-subtitle {
-  font-size: 1.2rem;
-  color: #555;
-}
-
-mat-card-content p {
-  margin: 12px 0;
+.contenedor-boton-volver button {
+  background-color: transparent;
+  color: #34495e;
+  font-weight: 600;
   font-size: 1.1rem;
-  color: #333;
+  padding: 12px 36px;
+  border: 2px solid #34495e;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Montserrat', sans-serif;
 }
 
-button[mat-raised-button] {
-  margin-top: 6px;
-  font-size: 1rem;
-  padding: 6px 16px;
+.contenedor-boton-volver button:hover {
+  background-color: #34495e;
+  color: #ecf0f1;
+  border-color: #34495e;
+  box-shadow: 0 6px 15px rgba(52, 73, 94, 0.3);
 }
 
+/* Spinner y texto cargando */
 .text-center {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #666;
-  font-size: 1.2rem;
+  color: #7f8c8d;
+  font-size: 1.3rem;
+  margin-top: 70px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  font-family: 'Montserrat', sans-serif;
 }
 
+/* Responsive */
 @media (max-width: 480px) {
   mat-card {
-    margin: 20px 10px;
-    padding: 16px;
+    padding: 28px 20px;
+    border-radius: 12px;
   }
 
   mat-card-title {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
   }
 
   mat-card-subtitle {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   mat-card-content p {
     font-size: 1rem;
   }
 
-  button[mat-raised-button] {
+  .contenedor-boton-volver button {
     width: 100%;
+    padding: 14px 0;
+    font-size: 1.1rem;
+    border-radius: 8px;
   }
 }

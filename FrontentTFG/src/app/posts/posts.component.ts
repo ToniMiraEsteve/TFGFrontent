@@ -18,9 +18,12 @@ export class PostsComponent implements OnInit {
   nuevasRespuestas: { [postId: number]: string } = {};
   cargando = false;
   errorMsg = '';
-  editandoPost: Post | null = null;
-  currentUser: any; 
 
+  currentUser: any;
+  editandoPost: Post | null = null;
+
+  respuestaEditandoId: number | null = null;
+  contenidoRespuestaEditando = '';
 
 
 
@@ -31,23 +34,18 @@ export class PostsComponent implements OnInit {
     this.cargarPosts();
   }
 
-  cargarPosts() {
+   cargarPosts() {
     this.cargando = true;
     this.postsService.getPosts().subscribe({
-      next: (response) => {
-        this.posts = response.data.map((post: Post) => ({
-          ...post,
-          respuestas: []
-        }));
-  
+      next: res => {
+        this.posts = res.data.map((p: Post) => ({ ...p, respuestas: [] }));
+        // Cargar respuestas activas
         this.posts.forEach(post => {
           this.respuestasService.getRespuestasByPostId(post.id).subscribe({
-            next: (respuestas) => {
-              post.respuestas = respuestas.data;
-            }
+            next: r => post.respuestas = r.data,
+            error: () => post.respuestas = []
           });
         });
-  
         this.cargando = false;
       },
       error: () => {
@@ -58,21 +56,16 @@ export class PostsComponent implements OnInit {
   }
 
   crearPost() {
-    if (!this.nuevoPost.contenido || this.nuevoPost.contenido.trim().length === 0) {
-      this.errorMsg = 'El contenido del post no puede estar vacío.';
+    if (!this.nuevoPost.contenido?.trim()) {
+      this.errorMsg = 'El contenido no puede estar vacío.';
       return;
     }
-  
     this.postsService.createPost(this.nuevoPost).subscribe({
       next: () => {
         this.nuevoPost = {};
-        this.errorMsg = '';
         this.cargarPosts();
       },
-      error: (error) => {
-        console.error('Error creando post:', error);
-        this.errorMsg = 'Error creando post. Intenta de nuevo más tarde.';
-      }
+      error: () => this.errorMsg = 'Error creando post.'
     });
   }
 
@@ -105,19 +98,64 @@ export class PostsComponent implements OnInit {
   enviarRespuesta(post: Post) {
     const contenido = this.nuevasRespuestas[post.id];
     if (!contenido?.trim()) return;
-
-    this.respuestasService.createRespuesta({
-      post_id: post.id,
-      contenido: contenido
-    }).subscribe({
-      next: (respuesta) => {
-        console.log('Respuesta: ' + respuesta)
+    this.respuestasService.createRespuesta({ post_id: post.id, contenido }).subscribe({
+      next: r => {
         post.respuestas = post.respuestas || [];
-        post.respuestas.push(respuesta.data);
+        post.respuestas.push(r.data);
         this.nuevasRespuestas[post.id] = '';
       },
       error: () => this.errorMsg = 'Error enviando respuesta.'
     });
   }
 
+  editarRespuesta(r: Respuesta) {
+    this.respuestaEditandoId = r.id;
+    this.contenidoRespuestaEditando = r.contenido;
+  }
+
+  guardarEdicionRespuesta(post: Post) {
+    if (!this.respuestaEditandoId) return;
+  
+    this.respuestasService.updateRespuesta({
+      id: this.respuestaEditandoId,
+      contenido: this.contenidoRespuestaEditando
+    } as Respuesta).subscribe({
+      next: res => {
+        const idx = post.respuestas.findIndex(r => r.id === this.respuestaEditandoId);
+        if (idx !== -1) post.respuestas[idx] = res.data;
+        this.respuestaEditandoId = null;
+        this.contenidoRespuestaEditando = '';
+      },
+      error: () => this.errorMsg = 'Error editando respuesta.'
+    });
+  }
+  
+
+  cancelarEdicionRespuesta() {
+    this.respuestaEditandoId = null;
+    this.contenidoRespuestaEditando = '';
+  }
+
+  borrarRespuesta(id: number) {
+    this.respuestasService.borrarRespuesta(id).subscribe({
+      next: () => {
+        // actualizar localmente
+        this.posts.forEach(post => {
+          post.respuestas = post.respuestas.filter(r => r.id !== id);
+        });
+      },
+      error: () => this.errorMsg = 'Error borrando respuesta.'
+    });
+  }
+
+  // Permisos
+  esAutorPost(post: Post) {
+    return post.usuario?.id === this.currentUser?.id;
+  }
+  esAutorRespuesta(r: Respuesta) {
+    return r.usuario?.id === this.currentUser?.id;
+  }
+  esAdmin() {
+    return this.currentUser?.rol === 'admin';
+  }
 }
