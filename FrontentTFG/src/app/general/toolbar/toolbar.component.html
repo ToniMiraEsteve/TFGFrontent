@@ -14,17 +14,17 @@
     <span>Niño</span>
   </button>
   
-  <button mat-button routerLink="/pdfs" [ngClass]="{ active: rutaActiva === 'pdfs' }" class="enlace" aria-label="Vista de formulario" *ngIf="rol === Roles.Admin || rol === Roles.Junta">
+  <button mat-button routerLink="/pdfs" [ngClass]="{ active: rutaActiva === 'pdfs' }" class="enlace" aria-label="Vista de formulario" *ngIf="rol">
     <mat-icon>list_alt</mat-icon>
     <span>Formularios</span>
   </button>
 
-  <button mat-button routerLink="/eventos" [ngClass]="{ active: rutaActiva === 'eventos' }" class="enlace" aria-label="Vista de eventos" *ngIf="rol === Roles.Admin || rol === Roles.Junta">
+  <button mat-button routerLink="/eventos" [ngClass]="{ active: rutaActiva === 'eventos' }" class="enlace" aria-label="Vista de eventos" *ngIf="rol">
     <mat-icon>calendar_month</mat-icon>
     <span>eventos</span>
   </button>
 
-  <button mat-button routerLink="/foro" [ngClass]="{ active: rutaActiva === 'foro' }" class="enlace" aria-label="Vista de foro" *ngIf="rol === Roles.Admin || rol === Roles.Junta">
+  <button mat-button routerLink="/foro" [ngClass]="{ active: rutaActiva === 'foro' }" class="enlace" aria-label="Vista de foro" *ngIf="rol">
     <mat-icon>chat</mat-icon>
     <span>foro</span>
   </button>

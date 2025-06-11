@@ -1,32 +1,55 @@
-<div class="info-container">
-    <h1>Sobre Nosotros</h1>
-    <p>
-      Bienvenido a nuestra aplicación. Aquí encontrarás toda la información que necesitas
-      sobre nuestro propósito, visión y servicios.
-    </p>
-  
-    <section>
-      <h2>Misión</h2>
-      <p>
-        Nuestra misión es proporcionar soluciones digitales eficientes, accesibles y escalables
-        para todos nuestros usuarios.
-      </p>
+<div class="carrusel">
+  <div class="imagenes" id="imagenes">
+    <img src="assets/imagenCarrusel1.jpeg" class="imagen" alt="Imagen 1" />
+    <img src="assets/imagenCarrusel2.jpeg" class="imagen" alt="Imagen 2" />
+  </div>
+  <div class="cuadro-titulo">
+    <h2>Montanyeres</h2>
+  </div>
+  <button class="boton prev" (click)="mover(-1)">&#10094;</button>
+  <button class="boton next" (click)="mover(1)">&#10095;</button>
+</div>
+
+<main>
+  <div class="descripcion" id="descripcion">
+    <div class="contenido-descripcion">
+      <h1>Que és Montanyeres</h1>
+      <div class="bloque-contenido">
+        <p>
+          Montanyeres és una associació que tracta els valors a través de jocs i activitats
+          que ens fan reflexionar i ser una persona amb uns millors valors. A més, a mitjan curs
+          gaudim d'una acampada de dos dies on disfrutem i vivim una experiència inoblidable,
+          per últim a final de curs disfrutem d'un campament d'una setmana sencera a les
+          instal·lacions d'althaia (Altea la Vella).
+        </p>
+        <img src="assets/imagen-descripcion.jpeg" alt="Descripción Montanyeres" />
+      </div>
+    </div>
+  </div>
+
+  <div class="apartados">
+    <section class="inscripciones">
+      <div class="imagens">
+        <img src="assets/inscripcions.jpg" alt="Inscripciones" />
+      </div>
+      <div class="contenido">
+        <p>
+          Aquí encontrarás toda la información necesaria para unirte a Montanyeres. Podrás
+          conocer los requisitos y el proceso para inscribirte en nuestras actividades y campamentos.
+        </p>
+      </div>
     </section>
-  
-    <section>
-      <h2>Visión</h2>
-      <p>
-        Ser un referente tecnológico en el desarrollo de aplicaciones innovadoras y centradas
-        en el usuario.
-      </p>
-    </section>
-  
-    <section>
-      <h2>Equipo</h2>
-      <p>
-        Nuestro equipo está formado por desarrolladores, diseñadores y profesionales apasionados
-        por la tecnología y el impacto social.
-      </p>
+
+    <section class="calendario">
+      <div class="imagens">
+        <img src="assets/inscripcions.jpg" alt="Calendario" />
+      </div>
+      <div class="contenido">
+        <p>
+          Consulta nuestro calendario para estar al tanto de todas las actividades y eventos que
+          tenemos programados a lo largo del año. No te pierdas ninguna de nuestras emocionantes aventuras.
+        </p>
+      </div>
     </section>
   </div>
-  
+</main>

@@ -25,9 +25,9 @@ const routes: Routes = [
     {path: ':id', component: TabEditNinyoComponent}
   ]},
 
-  {path: 'pdfs', component: PdfsComponent,data: { roles: [Rol.Admin] } , canActivate: [RoleGuard]},
-  {path: 'eventos', component: CalendarioComponent,data: { roles: [Rol.Admin] } , canActivate: [RoleGuard]},
-  {path: 'foro', component: PostsComponent,data: { roles: [Rol.Admin] } , canActivate: [RoleGuard]}
+  {path: 'pdfs', component: PdfsComponent,data: { roles: [Rol.Admin,Rol.Usuario,Rol.Junta, Rol.Monitor] } , canActivate: [RoleGuard]},
+  {path: 'eventos', component: CalendarioComponent,data: { roles: [Rol.Admin, Rol.Monitor, Rol.Usuario, Rol.Junta] } , canActivate: [RoleGuard]},
+  {path: 'foro', component: PostsComponent,data: { roles: [Rol.Admin, Rol.Monitor, Rol.Usuario, Rol.Junta] } , canActivate: [RoleGuard]}
 
 ];
 
