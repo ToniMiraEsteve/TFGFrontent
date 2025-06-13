@@ -40,7 +40,7 @@ export class PdfsComponent implements OnInit {
         if (res.data['url']) {
           console.log(res.data['url']);
           
-          const url = `http://localhost${res.data['url']}`;
+          const url = `http://52.205.115.137${res.data['url']}`;
           this.pdfUrl = url; 
         }
       },

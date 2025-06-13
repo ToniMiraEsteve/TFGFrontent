@@ -1,67 +1,123 @@
 /* Ajustes generales */
 .form-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    padding-top: 0.5rem;
-    font-family: 'Segoe UI', sans-serif;
-  }
-  
-  /* Estilo del título */
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding-top: 0.5rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Estilo del título */
+h2[mat-dialog-title] {
+  font-size: 1.6rem;
+  color: #1e3a8a;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #e0e7ff;
+  padding-bottom: 0.5rem;
+}
+
+/* Form fields */
+mat-form-field {
+  width: 100%;
+  background-color: #f8fafc;
+  border-radius: 8px;
+}
+
+/* Input y textarea */
+input[matInput],
+textarea[matInput],
+mat-select {
+  font-size: 1rem;
+  padding: 0.4rem 0.6rem;
+}
+
+/* Selector de color */
+input[type="color"] {
+  height: 3rem;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+/* Acciones del diálogo */
+mat-dialog-actions {
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Botones */
+button[mat-button] {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+button[mat-flat-button] {
+  background-color: #2563eb;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 0.4rem 1.2rem;
+  transition: background-color 0.3s ease;
+}
+
+button[mat-flat-button]:hover {
+  background-color: #1e40af;
+}
+
+/* --- RESPONSIVE para móvil --- */
+@media (max-width: 480px) {
+  /* Título un poco más pequeño */
   h2[mat-dialog-title] {
-    font-size: 1.6rem;
-    color: #1e3a8a;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid #e0e7ff;
-    padding-bottom: 0.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
   }
-  
-  /* Form fields */
-  mat-form-field {
-    width: 100%;
-    background-color: #f8fafc;
-    border-radius: 8px;
+
+  /* Menos padding en form content */
+  .form-content {
+    gap: 1rem;
+    padding-top: 0.25rem;
   }
-  
-  /* Input y textarea */
+
+  /* Inputs y selects un poco más compactos */
   input[matInput],
   textarea[matInput],
   mat-select {
-    font-size: 1rem;
-    padding: 0.4rem 0.6rem;
+    font-size: 0.9rem;
+    padding: 0.3rem 0.5rem;
   }
-  
-  /* Selector de color */
+
+  /* Selector color menos alto */
   input[type="color"] {
-    height: 3rem;
-    padding: 0;
-    border: none;
-    cursor: pointer;
+    height: 2.5rem;
   }
-  
-  /* Acciones del diálogo */
+
+  /* Espacio menor en acciones */
   mat-dialog-actions {
-    padding-top: 1.5rem;
-    border-top: 1px solid #e5e7eb;
+    padding-top: 1rem;
   }
-  
-  /* Botones */
+
+  /* Botones más pequeños y mejor espaciado */
   button[mat-button] {
-    color: #6b7280;
-    font-weight: 500;
+    font-size: 0.9rem;
   }
-  
+
   button[mat-flat-button] {
-    background-color: #2563eb;
-    color: white;
-    font-weight: 600;
-    border-radius: 6px;
-    padding: 0.4rem 1.2rem;
-    transition: background-color 0.3s ease;
+    font-size: 0.95rem;
+    padding: 0.35rem 1rem;
   }
-  
-  button[mat-flat-button]:hover {
-    background-color: #1e40af;
+
+  /* Para que el contenido del diálogo ocupe casi todo el ancho */
+  mat-dialog-content.form-content {
+    width: 95vw; /* 95% del ancho del viewport */
+    max-width: 100%;
+    margin: 0 auto; /* centrado horizontal */
   }
-  
+
+  /* Para que el contenedor del diálogo también sea más ancho */
+  ::ng-deep .mat-dialog-container {
+    width: 95vw !important;
+    max-width: 100% !important;
+    padding: 1rem !important;
+  }
+}
