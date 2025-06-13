@@ -1,18 +1,60 @@
-.div-buttons{
+.div-buttons {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0 50px;
-}
-
-table {
+    flex-wrap: wrap;
+  }
+  
+  table {
     width: 100%;
-}
-
-button {
+    overflow-x: auto;
+  }
+  
+  button {
     margin-right: 10px;
-}
-
-mat-form-field {
+  }
+  
+  mat-form-field {
     margin: 0 30px;
-}
+  }
+  
+  /* Responsive para pantallas pequeñas */
+  @media (max-width: 600px) {
+    .div-buttons {
+      flex-direction: column;
+      align-items: stretch;
+      margin: 0 16px;
+      gap: 12px;
+    }
+  
+    .div-buttons button {
+      width: 100%;
+      margin-right: 0;
+    }
+  
+    mat-form-field {
+      width: 100%;
+      margin: 0;
+    }
+  
+    .grow {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  
+    table {
+      display: block;
+      width: 100%;
+      min-width: 600px;
+    }
+  
+    th, td {
+      white-space: nowrap;
+    }
+  
+    button[mat-icon-button] {
+      padding: 4px;
+    }
+  }
+  
