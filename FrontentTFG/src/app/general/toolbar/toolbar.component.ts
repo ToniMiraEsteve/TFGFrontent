@@ -57,8 +57,6 @@ export class ToolbarComponent implements OnInit {
         console.log('Logout exitoso');
       },
     )
-    /*this.toolbarService.showToolbarSubject$.next(false);
-    this.toolbarService.setFichajeActual(null);*/
     this.router.navigate(['/']);
   }
 

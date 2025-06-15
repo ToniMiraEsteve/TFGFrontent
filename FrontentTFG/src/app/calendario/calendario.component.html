@@ -1,14 +1,11 @@
-<!-- Calendario Header -->
 <div class="calendar-header">
   <button (click)="previousMonth()">&#8592;</button>
   <span>{{ viewDate | date:'MMMM yyyy' : undefined : 'es' }}</span>
   <button (click)="nextMonth()">&#8594;</button>
 </div>
 
-<!-- Contenedor Principal -->
 <div class="calendar-container" [class.with-sidebar]="eventoSeleccionado" [class.full-width]="!eventoSeleccionado">
   
-  <!-- Calendario -->
   <div class="calendar">
     <mwl-calendar-month-view
       [viewDate]="viewDate"
@@ -21,7 +18,6 @@
     </mwl-calendar-month-view>
   </div>
 
-  <!-- Sidebar Evento -->
   <div class="sidebar" [class.hidden]="!eventoSeleccionado">
     <h3>{{ eventoSeleccionado?.titulo }}</h3>
     <p>{{ eventoSeleccionado?.mensaje }}</p>
@@ -32,7 +28,6 @@
     <button mat-button (click)="borrar()" *ngIf="userRol == Roles.Junta || userRol == Roles.Admin">Borrar</button>
   </div>
 
-  <!-- Plantilla personalizada del evento -->
   <ng-template #customEventTemplate let-event="event">
     <div class="custom-event" [style.backgroundColor]="event.color?.primary">
       <span class="event-title">{{ event.title }}</span>
@@ -41,7 +36,6 @@
   </ng-template>
 </div>
 
-<!-- Botón flotante -->
 <button
   mat-fab
   color="primary"

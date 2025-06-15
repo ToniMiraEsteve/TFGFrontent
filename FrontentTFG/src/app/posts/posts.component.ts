@@ -39,7 +39,6 @@ export class PostsComponent implements OnInit {
     this.postsService.getPosts().subscribe({
       next: res => {
         this.posts = res.data.map((p: Post) => ({ ...p, respuestas: [] }));
-        // Cargar respuestas activas
         this.posts.forEach(post => {
           this.respuestasService.getRespuestasByPostId(post.id).subscribe({
             next: r => post.respuestas = r.data,
@@ -139,7 +138,6 @@ export class PostsComponent implements OnInit {
   borrarRespuesta(id: number) {
     this.respuestasService.borrarRespuesta(id).subscribe({
       next: () => {
-        // actualizar localmente
         this.posts.forEach(post => {
           post.respuestas = post.respuestas.filter(r => r.id !== id);
         });
@@ -148,7 +146,6 @@ export class PostsComponent implements OnInit {
     });
   }
 
-  // Permisos
   esAutorPost(post: Post) {
     return post.usuario?.id === this.currentUser?.id;
   }

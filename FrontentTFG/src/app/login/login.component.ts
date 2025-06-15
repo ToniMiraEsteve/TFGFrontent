@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   email: string | undefined;
   password: string | undefined;
+  errorMessage: string | null = null;
 
   constructor(private authService: AuthService, private authStorage: AuthStorage, private router: Router) { }
 
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
+    this.errorMessage = null;
     if(this.email && this.password) {
       this.authService.attempAuth(this.email, this.password).subscribe(
         response => {
@@ -40,6 +42,11 @@ export class LoginComponent implements OnInit {
           }
         },
         err => {
+          if (err.status === 401) {
+            this.errorMessage = 'Email o contraseña incorrectos.';
+          } else {
+            this.errorMessage = 'Error del servidor, intenta más tarde.';
+          }
           console.log(err);
       });
     }

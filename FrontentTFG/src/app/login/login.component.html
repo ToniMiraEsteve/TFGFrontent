@@ -1,12 +1,16 @@
 <div class="login-page">
-    <div class="form">
-      <form class="login-form">
-        <div>
-          <input type="text" autocomplete="off" [(ngModel)] = "email" placeholder="email" name="email" required="required" #input>
-          <input type="password" autocomplete="off" [(ngModel)] = "password" placeholder="Contraseña"name="password" required="required"/>
-          <button mat-raised-button color="primary" (click)="login()" value ="Login">login</button>
+  <div class="form">
+    <form class="login-form">
+      <div>
+        <input type="text" autocomplete="off" [(ngModel)]="email" placeholder="email" name="email" required #input>
+        <input type="password" autocomplete="off" [(ngModel)]="password" placeholder="Contraseña" name="password" required />
+        
+        <div *ngIf="errorMessage" style="color: red; margin-bottom: 10px;">
+          {{ errorMessage }}
         </div>
-      </form>
-    </div>
+
+        <button mat-raised-button color="primary" (click)="login()" type="button">Login</button>
+      </div>
+    </form>
+  </div>
 </div>
-  

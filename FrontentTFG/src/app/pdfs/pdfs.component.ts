@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PdfsService } from '../services/pdfs.service';
 import { PdfForm } from '../forms/pdf-form';
+import { AuthStorage } from '../general/localStorage/auth.stroge';
 
 @Component({
   selector: 'app-pdfs',
@@ -14,7 +15,7 @@ export class PdfsComponent implements OnInit {
   pdfUrl: string | null = null;
 
 
-  constructor(private fb: FormBuilder, private pdfService: PdfsService) {}
+  constructor(private fb: FormBuilder, private pdfService: PdfsService, private authStorage: AuthStorage) {}
 
   
   ngOnInit(): void {
@@ -27,7 +28,7 @@ export class PdfsComponent implements OnInit {
     const datosFormulario = this.pdfForm.value;
 
     const payload = {
-      user_id: 1, 
+      user_id: this.authStorage.getUser()?.id, 
       datos_form: datosFormulario,
       estado: 'pendiente',
       desactivado: false
@@ -35,11 +36,7 @@ export class PdfsComponent implements OnInit {
 
     this.pdfService.crearPdf(payload).subscribe({
       next: (res) => {
-        console.log('PDF guardado correctamente', res);
-        alert('Formulario enviado y PDF generado');
-        if (res.data['url']) {
-          console.log(res.data['url']);
-          
+        if (res.data['url']) {          
           const url = `http://52.205.115.137${res.data['url']}`;
           this.pdfUrl = url; 
         }
@@ -48,9 +45,6 @@ export class PdfsComponent implements OnInit {
         console.error('Error al enviar el formulario', err);
       }
     });
-
-    
-    
   }
 
   volverAlFormulario() {

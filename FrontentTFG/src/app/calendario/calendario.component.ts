@@ -74,11 +74,7 @@ export class CalendarioComponent implements OnInit {
     if(this.userRol == Rol.Junta || this.userRol == Rol.Monitor || this.userRol == Rol.Admin){
       const nuevoEvento: Partial<Evento> = {
         fecha: moment(date).format('YYYY-MM-DD'), 
-      };
-      console.log(date.toISOString()); 
-      console.log('Doble clic en fecha:', date);
-      console.log('Nuevo evento:', nuevoEvento.fecha);
-      
+      };     
     
       const dialogRef = this.modelDialogService.openEventDialog(nuevoEvento, false, {
         width: '40%',
